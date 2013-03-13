@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CreeperMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VolumeFog.shader">
     <Files>
       <File FileName="Assets\CreeperMovement.cs" Line="42" Column="2" />
+      <File FileName="Assets\VolumeFog.shader" Line="61" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
