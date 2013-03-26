@@ -29,7 +29,7 @@ public class MouseLook : MonoBehaviour {
 	public float maximumY = 60F;
 
 	float rotationY = 0F;
-
+	
 	void Update ()
 	{
 		if (axes == RotationAxes.MouseXAndY)
@@ -52,6 +52,11 @@ public class MouseLook : MonoBehaviour {
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
+		
+		//show/hide mouse cursor
+		Screen.showCursor = false;
+		//Screen.lockCursor = true;
+
 	}
 	
 	void Start ()
