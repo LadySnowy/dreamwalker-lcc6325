@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MenuGUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraCreep.cs">
     <Files>
-      <File FileName="Assets\CreeperMovement.cs" Line="29" Column="27" />
       <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" Line="58" Column="5" />
-      <File FileName="Assets\MenuGUI.cs" Line="15" Column="4" />
+      <File FileName="Assets\Scripts\CameraCreep.cs" Line="13" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

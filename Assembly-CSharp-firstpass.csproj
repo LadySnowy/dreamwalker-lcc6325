@@ -45,11 +45,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-     <None Include="Assets\DissolveDiffuse.shader" />
+     <Compile Include="Assets\Standard Assets\GrabClue.cs" />
+     <None Include="Assets\Shaders\DissolveDiffuse.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\NoFogShader.shader" />
+     <None Include="Assets\Shaders\NoFogShader.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\EdgeFog\Blend2Textures.shader" />
+     <None Include="Assets\Shaders\EdgeFog\Blend2Textures.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
