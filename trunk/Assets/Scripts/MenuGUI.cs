@@ -12,6 +12,7 @@ public class MenuGUI : MonoBehaviour {
 		
 		GUI.skin.box.fontSize = 40;
 		GUI.skin.button.fontSize = 20;
+		GUI.skin.label.fontSize = 20;
 		
 		// Make a background box
 		GUI.Box(new Rect(width/2-250,50,500,height-100), "DreamWalker");
