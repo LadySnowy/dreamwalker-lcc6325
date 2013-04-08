@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraCreep.cs" />
      <Compile Include="Assets\Scripts\CreeperMovement.cs" />
+     <Compile Include="Assets\Scripts\GrabClue.cs" />
      <Compile Include="Assets\Scripts\MenuGUI.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <None Include="Assets\Shaders\DissolveDiffuse.shader" />

@@ -114,7 +114,7 @@ public class PlayerScript : MonoBehaviour
 	bool CharMoved() {
   		Vector3 displacement = this.gameObject.transform.position - this.lastPos;
   		this.lastPos = this.gameObject.transform.position;
-  		return (displacement.magnitude > 0.05); // return true if char moved 1mm
+  		return (displacement.magnitude > 0.1); // return true if char moved 1mm
 	}
 
 	
