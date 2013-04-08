@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\CreeperMovement.cs" />
      <Compile Include="Assets\GrabClue.cs" />
+     <Compile Include="Assets\MenuGUI.cs" />
      <Compile Include="Assets\PlayerScript.cs" />
      <None Include="Assets\DissolveDiffuse.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
