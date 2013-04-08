@@ -1,23 +1,31 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(AudioSource))]
 public class GrabClue : MonoBehaviour
 {
 	
 	public GameObject player;
 	bool grabbed;
 	bool canBeGrabbed;
+	
+	//AudioClip myClip;
 	// Use this for initialization
 	void Start ()
 	{
 		this.grabbed = false;
 		this.canBeGrabbed = true;
+		//this.audioSource = this.gameObject.GetComponent<AudioSource>();
+		//audio.clip = myClip;
+		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (this.grabbed) {
+			//this.audioSource.audio.PlayOneShot(this.audioSource.clip);
+			audio.Play();
 			StartCoroutine (disappear ());
 			this.grabbed = false;
 		}
@@ -52,6 +60,5 @@ public class GrabClue : MonoBehaviour
 		Color color = this.gameObject.renderer.material.color;
 		color.a -= 0.01f;
 		this.gameObject.renderer.material.color = color;
-		Debug.Log ("Decreased alpha");
 	}
 }

@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Standard Assets\GrabClue.cs" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PlayerScript.cs" />
      <None Include="Assets\Shaders\DissolveDiffuse.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Shaders\NoFogShader.shader" />
