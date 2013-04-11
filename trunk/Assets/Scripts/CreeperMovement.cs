@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using Pathfinding;
 
-[RequireComponent (typeof(CharacterController)), RequireComponent (typeof(TrailRenderer)), RequireComponent (typeof(AudioSource))]
+[RequireComponent (typeof(CharacterController)), RequireComponent (typeof(TrailRenderer)), RequireComponent (typeof(AudioSource)),
+	RequireComponent (typeof(Seeker))]
 public class CreeperMovement : MonoBehaviour
 {
 	
@@ -23,7 +25,7 @@ public class CreeperMovement : MonoBehaviour
 	//DateTime lastUpdate;
 	public GameObject[] waypoints;
 	//Vector3[] creeperPositions;
-	int currentWaypoint; //lastWaypoint;
+	int currentPatternWaypoint; //lastWaypoint;
 	bool collided;
 	bool grabbed;
 	bool canBeGrabbed;
@@ -45,10 +47,49 @@ public class CreeperMovement : MonoBehaviour
 	public float CREEPER_HIT_DELTA;
 	bool canEnableTrailDisplay;
 	
+	//pathing variables
+	private Seeker seeker;
+	//The calculated path
+	Path path;
+	//The max distance from the AI to a waypoint for it to continue to the next waypoint
+	public float nextWaypointDistance = 3;
+	//The waypoint we are currently moving towards
+	private int currentPathWaypoint;
+	//private Vector3 dir;
+	//private Vector3 drunkDir;
+	public TimeSpan timeDelta;
+	public DateTime lastUpdate;
+	private Vector3 cross;
+	private bool posVector;
+	private float magnitude;
+	public float CREEPER_DRUNK_VALUE;
+	public int deltaSeconds;
+	bool needNewPath;
+	bool switchedModes;
+	bool playerMoved;
+	Vector3 lastPlayerPosition;
+	public float PLAYER_MOVE_DIST;
+	public int audioPauseTimeSeconds;
+	DateTime chasePlayTime;
+	
+	
+	
 	// Use this for initialization
 	void Start ()
 	{
+		
+		//pathing
+		timeDelta = new TimeSpan (0, 0, deltaSeconds);
+		magnitude = 1;
+		posVector = true;
+		lastUpdate = System.DateTime.Now;
+		seeker = GetComponent<Seeker> ();
+		this.needNewPath = true;
+		this.currentPathWaypoint = 0;
+		this.playerMoved = false;
+		
 		this.chaseMode = false;
+		switchedModes = false;
 		this.canEnableTrailDisplay = false;
 		if (this.rotationVelocity == 0) {
 			this.rotationVelocity = 10;
@@ -84,7 +125,7 @@ public class CreeperMovement : MonoBehaviour
 		//this.creeperPositions [4] = GameObject.Find ("Cube5").transform.position;
 		
 		//this.lastWaypoint = 0;
-		this.currentWaypoint = 0;
+		this.currentPatternWaypoint = 0;
 		
 		//disable collisions between the two colliders on this gameobject
 		//Collider collider = GetComponent<CapsuleCollider>();
@@ -118,8 +159,12 @@ public class CreeperMovement : MonoBehaviour
 			if (playerDistance < PLAYER_PROXIMITY) {
 				//Debug.Log ("Creeper near!!");
 				//this.creeper.transform.LookAt (this.player.transform.position); //turns to face the player immediately... kinda creepy!
-				if (!audio.isPlaying) {
-					audio.Play();
+				DateTime audioCheckTime = DateTime.Now;
+				TimeSpan chaseAudioDelta = audioCheckTime - this.chasePlayTime;
+				TimeSpan audioGapTime = new TimeSpan(0, 0, this.audioPauseTimeSeconds);
+				if (!audio.isPlaying && (chaseAudioDelta > audioGapTime)) {
+					audio.Play ();
+					this.chasePlayTime = DateTime.Now;
 				}
 				destination = this.player.transform.position;
 				this.gameObject.GetComponent<TrailRenderer> ().enabled = false;
@@ -128,21 +173,30 @@ public class CreeperMovement : MonoBehaviour
 					//beginning chase...
 					this.chaseVelocity = this.velocity;
 				}
-				this.chaseMode = true;
+				
+				if (!this.chaseMode) {
+					this.chaseMode = true;
+					this.switchedModes = true;
+					this.lastPlayerPosition = this.player.transform.position;
+					this.playerMoved = false;
+				}
 			} else {
-				audio.Pause();
-				this.chaseMode = false;
+				audio.Pause ();
+				if (this.chaseMode) {
+					this.chaseMode = false;
+					this.switchedModes = true;
+				}
 				this.gameObject.GetComponent<TrailRenderer> ().enabled = true;
 				updateDest ();
-				destination = this.waypoints [this.currentWaypoint].transform.position;
+				destination = this.waypoints [this.currentPatternWaypoint].transform.position;
 				
 				int maxWaypointArrayIndex = this.waypoints.Length - 1;
 				
-				if (this.currentWaypoint != maxWaypointArrayIndex) {
+				if (this.currentPatternWaypoint != maxWaypointArrayIndex) {
 					this.canEnableTrailDisplay = true;
 				}
 				
-				if ((!this.trailDisplay) && (this.currentWaypoint == maxWaypointArrayIndex) && (this.canEnableTrailDisplay)) {
+				if ((!this.trailDisplay) && (this.currentPatternWaypoint == maxWaypointArrayIndex) && (this.canEnableTrailDisplay)) {
 					
 					this.canEnableTrailDisplay = false;
 					//this.gameObject.GetComponent<TrailRenderer>().enabled = true;
@@ -164,33 +218,98 @@ public class CreeperMovement : MonoBehaviour
 			//this.lastUpdate = cur;
 			//updateDest ();
 			
-			Vector3 currentPosition = this.creeper.transform.position;
-			
-			Vector3 travelDirection = destination - currentPosition;
-				
-			Vector3 moveDirection = Vector3.RotateTowards (this.moveDirection, travelDirection, (200 * Mathf.Deg2Rad) + 180 * Time.deltaTime, this.rotationVelocity);
- 
-			//rotate our creeper
-			if (travelDirection != Vector3.zero) {
-				this.creeper.transform.rotation = Quaternion.LookRotation (moveDirection);
+			if (this.switchedModes) {
+				this.path = null;
+				this.needNewPath = true;
+				this.switchedModes = false;
 			}
-				
-			//move our creeper
-			Vector3 movement = moveDirection * Time.deltaTime * this.velocity;
-			movement.Normalize ();
-			float curVelocity = this.velocity;
-			if (this.chaseMode) {
-				this.chaseVelocity += this.chaseVelocityIncrementValue;
-				if (this.chaseVelocity > this.chaseMaxVelocity) {
-					this.chaseVelocity = this.chaseMaxVelocity;
+			//pathing
+			if (path == null) {
+				//calculate new path
+				if (needNewPath) {
+					Debug.Log ("start path: " + this.gameObject.transform.position + ", " + destination);
+					seeker.StartPath (this.gameObject.transform.position, destination, OnPathComplete);
+					this.needNewPath = false;
 				}
-				curVelocity = this.chaseVelocity;
-				
+				//We have no path to move after yet
+				return;
 			}
-			curVelocity *= Time.deltaTime;
-			movement *= curVelocity;
-			this.controller.Move (movement);
 			
+			if (this.currentPathWaypoint >= path.vectorPath.Count) {
+				Debug.Log ("End Of Path Reached");
+				this.path = null;
+				this.needNewPath = true;
+				return;
+			}
+			
+			
+			if (this.chaseMode) {
+				double playerMovedDistance = Vector3.Distance (this.lastPlayerPosition, this.player.transform.position);
+				if (playerMovedDistance > PLAYER_MOVE_DIST) {
+					this.playerMoved = true;
+				}
+				//calculate new path every update since player is moving...
+				if (this.playerMoved) {
+					if (seeker.IsDone () && this.needNewPath) {
+						//Path p = seeker.GetNewPath (this.gameObject.transform.position, destination);
+						seeker.StartPath (this.gameObject.transform.position, destination, OnPathComplete);
+						this.needNewPath = false;
+					}
+					/*
+					if (!p.error) {
+						this.path = p;
+						//Reset the waypoint counter
+						this.currentPathWaypoint = 0;
+					} else {
+						this.needNewPath = true;
+						this.path = null;
+					}
+					*/
+					this.playerMoved = false;
+					this.lastPlayerPosition = this.player.transform.position;
+				}
+			}
+		
+			if (this.path != null) {
+				Vector3 travelDirection = calculateMoveVector ();
+				//Debug.Log ("travelDirection: " + travelDirection);
+			
+				//Vector3 currentPosition = this.creeper.transform.position;
+			
+				//Vector3 travelDirection = destination - currentPosition;
+				
+			
+				//Vector3 lookDirection = Vector3.RotateTowards (this.moveDirection, travelDirection, (200 * Mathf.Deg2Rad) * Time.deltaTime, this.rotationVelocity);
+				this.moveDirection = Vector3.RotateTowards (this.moveDirection, travelDirection, (200 * Mathf.Deg2Rad) * Time.deltaTime, this.rotationVelocity);
+ 
+				//rotate our creeper
+				if (travelDirection != Vector3.zero) {
+					Vector3 lookDirection = new Vector3 (this.moveDirection.x, 0, this.moveDirection.z);
+					//this.creeper.transform.rotation = Quaternion.LookRotation (this.moveDirection);
+					this.creeper.transform.rotation = Quaternion.LookRotation (lookDirection);
+				}
+				
+				//move our creeper
+				//Vector3 movement = new Vector3(this.moveDirection.x, this.moveDirection.y, this.moveDirection.z);
+				//movement.Normalize();
+				travelDirection.Normalize ();
+				float curVelocity = this.velocity;
+				if (this.chaseMode) {
+					this.chaseVelocity += this.chaseVelocityIncrementValue;
+					if (this.chaseVelocity > this.chaseMaxVelocity) {
+						this.chaseVelocity = this.chaseMaxVelocity;
+					}
+					curVelocity = this.chaseVelocity;
+				}
+				curVelocity *= Time.deltaTime;
+				//movement *= curVelocity;
+				//this.controller.Move (movement);
+				travelDirection *= curVelocity;
+				this.controller.Move (travelDirection);
+			
+				
+				updatePathWaypoint ();
+			}
 			
 			//Vector3 lastLocation = this.waypoints[lastWaypoint].transform.position;
 			//interpolate movement between original position and cube position
@@ -211,12 +330,87 @@ public class CreeperMovement : MonoBehaviour
 		
 		}
 	}
+	
+	void updatePathWaypoint ()
+	{
+		//Vector3 positionZeroY = transform.position;
+		//positionZeroY.y = 0;
+		if (Vector3.Distance (this.gameObject.transform.position, path.vectorPath [currentPathWaypoint]) < nextWaypointDistance) {
+			currentPathWaypoint++;
+		}
+	}
+	
+	public void OnPathComplete (Path p)
+	{
+		//Debug.Log ("Yey, we got a path back. Did it have an error? " + p.error);
+		if (!p.error) {
+			this.path = p;
+			//Reset the waypoint counter
+			this.currentPathWaypoint = 0;
+		} else {
+			this.needNewPath = true;
+			Debug.Log ("path failure");
+		}
+	}
+	
+	Vector3 calculateMoveVector ()
+	{
+		//Direction to the next waypoint
+		//Debug.Log ("vector path: " + this.path.vectorPath);
+		//for (int i = 0; i < this.path.vectorPath.Count; i++) {
+		//	Debug.Log ("vector path " + i + ": " + this.path.vectorPath [i]);
+		//}
+		//Debug.Log ("current creeper position: " + this.creeper.transform.position);
+		//Debug.Log ("current path waypoint: " + this.path.vectorPath [this.currentPathWaypoint]);
+		Vector3 dir = (this.path.vectorPath [this.currentPathWaypoint] - this.creeper.transform.position).normalized;
+		//Debug.Log ("dir: " + dir);
+		//check if it's time for a magnitude and direction update
+		DateTime now = System.DateTime.Now;
+		TimeSpan diff = now - this.lastUpdate;
+		if (diff > this.timeDelta) {
+			//calculate new magnitude and pos/neg direction for perp vector
+			System.Random r = new System.Random ();
+		
+			this.magnitude = (float)r.NextDouble () * CREEPER_DRUNK_VALUE;
 			
+			double posOrNeg = r.NextDouble ();
+			if (posOrNeg < 0.5) {
+				this.posVector = true;
+			}
+			
+			this.lastUpdate = now;
+		}
+		
+		//update perpendicular vector every calculation using current posVector true/false and magnitude...
+		//Vector3 groundDir = new Vector3 (dir.x, 0, dir.z);
+		Vector3 downDir = new Vector3 (0, -1, 0);
+		/*
+		if (posVector) {
+			groundDir.y = dir.y + 1;
+		} else {
+			groundDir.y = dir.y - 1;
+		}
+		*/
+		
+		cross = Vector3.Cross (dir, downDir);
+		if (!posVector) {
+			cross = -cross;
+		}
+		cross.Normalize ();
+		cross *= magnitude;
+		
+		Vector3 drunkDir = new Vector3 (dir.x, dir.y, dir.z);
+		drunkDir += cross;
+		//drunkDir *= speed * Time.fixedDeltaTime;
+		
+		return drunkDir;
+	}
+	
 	void updateDest ()
 	{
 		
 		Vector3 currentPosition = this.creeper.transform.position;
-		Vector3 destination = this.waypoints [currentWaypoint].transform.position;
+		Vector3 destination = this.waypoints [currentPatternWaypoint].transform.position;
 		
 		float distance = Vector3.Distance (currentPosition, destination);
 		
@@ -224,7 +418,7 @@ public class CreeperMovement : MonoBehaviour
 			//if (this.weight >= 1.0) {
 			//this.weight = 0;
 			//this.lastWaypoint = this.currentWaypoint;
-			this.currentWaypoint = (this.currentWaypoint + 1) % this.waypoints.Length;
+			this.currentPatternWaypoint = (this.currentPatternWaypoint + 1) % this.waypoints.Length;
 			//this.destination = this.creeperPositions [this.currentCube];
 			//this.direction = -1;
 		} else {

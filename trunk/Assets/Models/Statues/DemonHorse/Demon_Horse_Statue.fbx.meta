@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: 1c12d0b468bfcf44b9854c556afc3720
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: gothicFountain
+    100004: gothicFountain 1
+    100006: gothicFountain_geom_set
+    100008: Hellen
+    100010: Hellen 1
+    100012: Hellen_geom_set
+    100014: krisna_battling_the_horse_demon_1992_306_20120601_LA
+    100016: krisna_battling_the_horse_demon_1992_306_20120601_LA 1
+    100018: krisna_battling_the_horse_demon_1992_306_20120601_LA_geom_set
+    100020: Memory
+    100022: Memory 1
+    100024: Memory_geom_set
+    100026: Memory_repair_la
+    100028: Memory_repair_la 1
+    100030: Memory_repair_la_geom_set
+    100032: princess_guardian_final
+    100034: princess_guardian_final 1
+    100036: princess_guardian_final_geom_set
+    100038: ready_for_battle
+    100040: ready_for_battle 1
+    100042: ready_for_battle_geom_set
+    100044: sorciere_new2
+    100046: sorciere_new2 1
+    100048: sorciere_new2_geom_set
+    100050: transform1
+    100052: transform1_MeshPart0
+    100054: transform1_MeshPart1
+    100056: transform1_MeshPart2
+    100058: transform1_MeshPart3
+    100060: transform1_MeshPart4
+    400000: //RootNode
+    400002: gothicFountain
+    400004: gothicFountain 1
+    400006: gothicFountain_geom_set
+    400008: Hellen
+    400010: Hellen 1
+    400012: Hellen_geom_set
+    400014: krisna_battling_the_horse_demon_1992_306_20120601_LA
+    400016: krisna_battling_the_horse_demon_1992_306_20120601_LA 1
+    400018: krisna_battling_the_horse_demon_1992_306_20120601_LA_geom_set
+    400020: Memory
+    400022: Memory 1
+    400024: Memory_geom_set
+    400026: Memory_repair_la
+    400028: Memory_repair_la 1
+    400030: Memory_repair_la_geom_set
+    400032: princess_guardian_final
+    400034: princess_guardian_final 1
+    400036: princess_guardian_final_geom_set
+    400038: ready_for_battle
+    400040: ready_for_battle 1
+    400042: ready_for_battle_geom_set
+    400044: sorciere_new2
+    400046: sorciere_new2 1
+    400048: sorciere_new2_geom_set
+    400050: transform1
+    400052: transform1_MeshPart0
+    400054: transform1_MeshPart1
+    400056: transform1_MeshPart2
+    400058: transform1_MeshPart3
+    400060: transform1_MeshPart4
+    2300000: transform1_MeshPart0
+    2300002: transform1_MeshPart1
+    2300004: transform1_MeshPart2
+    2300006: transform1_MeshPart3
+    2300008: transform1_MeshPart4
+    3300000: transform1_MeshPart0
+    3300002: transform1_MeshPart1
+    3300004: transform1_MeshPart2
+    3300006: transform1_MeshPart3
+    3300008: transform1_MeshPart4
+    4300000: transform1_MeshPart0
+    4300002: transform1_MeshPart1
+    4300004: transform1_MeshPart2
+    4300006: transform1_MeshPart3
+    4300008: transform1_MeshPart4
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

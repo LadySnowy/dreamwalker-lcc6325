@@ -1,0 +1,104 @@
+fileFormatVersion: 2
+guid: c31a1e8ca48f0d342bdfb63217ba8218
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: gothicFountain
+    100002: gothicFountain 1
+    100004: gothicFountain_geom_set
+    100006: Hellen
+    100008: Hellen 1
+    100010: Hellen_geom_set
+    100012: Memory
+    100014: Memory 1
+    100016: //RootNode
+    100018: Memory_geom_set
+    100020: Memory_repair_la
+    100022: Memory_repair_la 1
+    100024: Memory_repair_la_geom_set
+    100026: transform1
+    100028: transform1_MeshPart0
+    100030: transform1_MeshPart1
+    100032: transform1_MeshPart2
+    100034: transform1_MeshPart3
+    400000: gothicFountain
+    400002: gothicFountain 1
+    400004: gothicFountain_geom_set
+    400006: Hellen
+    400008: Hellen 1
+    400010: Hellen_geom_set
+    400012: Memory
+    400014: Memory 1
+    400016: //RootNode
+    400018: Memory_geom_set
+    400020: Memory_repair_la
+    400022: Memory_repair_la 1
+    400024: Memory_repair_la_geom_set
+    400026: transform1
+    400028: transform1_MeshPart0
+    400030: transform1_MeshPart1
+    400032: transform1_MeshPart2
+    400034: transform1_MeshPart3
+    2300000: transform1_MeshPart0
+    2300002: transform1_MeshPart1
+    2300004: transform1_MeshPart2
+    2300006: transform1_MeshPart3
+    3300000: transform1_MeshPart0
+    3300002: transform1_MeshPart1
+    3300004: transform1_MeshPart2
+    3300006: transform1_MeshPart3
+    4300000: transform1_MeshPart0
+    4300002: transform1_MeshPart1
+    4300004: transform1_MeshPart2
+    4300006: transform1_MeshPart3
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
