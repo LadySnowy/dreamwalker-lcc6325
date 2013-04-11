@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: 247b3cf84c09b4144a4120c06c115b46
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: gothicFountain
+    100002: gothicFountain 1
+    100004: gothicFountain_geom_set
+    100006: //RootNode
+    100008: Hellen
+    100010: Hellen 1
+    100012: Hellen_geom_set
+    100014: Memory
+    100016: Memory 1
+    100018: Memory_geom_set
+    100020: Memory_repair_la
+    100022: Memory_repair_la 1
+    100024: Memory_repair_la_geom_set
+    100026: princess_guardian_final
+    100028: princess_guardian_final 1
+    100030: princess_guardian_final_geom_set
+    100032: ready_for_battle
+    100034: ready_for_battle 1
+    100036: ready_for_battle_geom_set
+    100038: sorciere_new2
+    100040: sorciere_new2 1
+    100042: sorciere_new2_geom_set
+    100044: transform1
+    100046: transform1_MeshPart0
+    100048: transform1_MeshPart1
+    100050: transform1_MeshPart10
+    100052: transform1_MeshPart11
+    100054: transform1_MeshPart12
+    100056: transform1_MeshPart13
+    100058: transform1_MeshPart14
+    100060: transform1_MeshPart15
+    100062: transform1_MeshPart16
+    100064: transform1_MeshPart17
+    100066: transform1_MeshPart18
+    100068: transform1_MeshPart19
+    100070: transform1_MeshPart2
+    100072: transform1_MeshPart20
+    100074: transform1_MeshPart21
+    100076: transform1_MeshPart22
+    100078: transform1_MeshPart23
+    100080: transform1_MeshPart3
+    100082: transform1_MeshPart4
+    100084: transform1_MeshPart5
+    100086: transform1_MeshPart6
+    100088: transform1_MeshPart7
+    100090: transform1_MeshPart8
+    100092: transform1_MeshPart9
+    400000: gothicFountain
+    400002: gothicFountain 1
+    400004: gothicFountain_geom_set
+    400006: //RootNode
+    400008: Hellen
+    400010: Hellen 1
+    400012: Hellen_geom_set
+    400014: Memory
+    400016: Memory 1
+    400018: Memory_geom_set
+    400020: Memory_repair_la
+    400022: Memory_repair_la 1
+    400024: Memory_repair_la_geom_set
+    400026: princess_guardian_final
+    400028: princess_guardian_final 1
+    400030: princess_guardian_final_geom_set
+    400032: ready_for_battle
+    400034: ready_for_battle 1
+    400036: ready_for_battle_geom_set
+    400038: sorciere_new2
+    400040: sorciere_new2 1
+    400042: sorciere_new2_geom_set
+    400044: transform1
+    400046: transform1_MeshPart0
+    400048: transform1_MeshPart1
+    400050: transform1_MeshPart10
+    400052: transform1_MeshPart11
+    400054: transform1_MeshPart12
+    400056: transform1_MeshPart13
+    400058: transform1_MeshPart14
+    400060: transform1_MeshPart15
+    400062: transform1_MeshPart16
+    400064: transform1_MeshPart17
+    400066: transform1_MeshPart18
+    400068: transform1_MeshPart19
+    400070: transform1_MeshPart2
+    400072: transform1_MeshPart20
+    400074: transform1_MeshPart21
+    400076: transform1_MeshPart22
+    400078: transform1_MeshPart23
+    400080: transform1_MeshPart3
+    400082: transform1_MeshPart4
+    400084: transform1_MeshPart5
+    400086: transform1_MeshPart6
+    400088: transform1_MeshPart7
+    400090: transform1_MeshPart8
+    400092: transform1_MeshPart9
+    2300000: transform1_MeshPart0
+    2300002: transform1_MeshPart1
+    2300004: transform1_MeshPart10
+    2300006: transform1_MeshPart11
+    2300008: transform1_MeshPart12
+    2300010: transform1_MeshPart13
+    2300012: transform1_MeshPart14
+    2300014: transform1_MeshPart15
+    2300016: transform1_MeshPart16
+    2300018: transform1_MeshPart17
+    2300020: transform1_MeshPart18
+    2300022: transform1_MeshPart19
+    2300024: transform1_MeshPart2
+    2300026: transform1_MeshPart20
+    2300028: transform1_MeshPart21
+    2300030: transform1_MeshPart22
+    2300032: transform1_MeshPart23
+    2300034: transform1_MeshPart3
+    2300036: transform1_MeshPart4
+    2300038: transform1_MeshPart5
+    2300040: transform1_MeshPart6
+    2300042: transform1_MeshPart7
+    2300044: transform1_MeshPart8
+    2300046: transform1_MeshPart9
+    3300000: transform1_MeshPart0
+    3300002: transform1_MeshPart1
+    3300004: transform1_MeshPart10
+    3300006: transform1_MeshPart11
+    3300008: transform1_MeshPart12
+    3300010: transform1_MeshPart13
+    3300012: transform1_MeshPart14
+    3300014: transform1_MeshPart15
+    3300016: transform1_MeshPart16
+    3300018: transform1_MeshPart17
+    3300020: transform1_MeshPart18
+    3300022: transform1_MeshPart19
+    3300024: transform1_MeshPart2
+    3300026: transform1_MeshPart20
+    3300028: transform1_MeshPart21
+    3300030: transform1_MeshPart22
+    3300032: transform1_MeshPart23
+    3300034: transform1_MeshPart3
+    3300036: transform1_MeshPart4
+    3300038: transform1_MeshPart5
+    3300040: transform1_MeshPart6
+    3300042: transform1_MeshPart7
+    3300044: transform1_MeshPart8
+    3300046: transform1_MeshPart9
+    4300000: transform1_MeshPart0
+    4300002: transform1_MeshPart1
+    4300004: transform1_MeshPart2
+    4300006: transform1_MeshPart3
+    4300008: transform1_MeshPart4
+    4300010: transform1_MeshPart5
+    4300012: transform1_MeshPart6
+    4300014: transform1_MeshPart7
+    4300016: transform1_MeshPart8
+    4300018: transform1_MeshPart9
+    4300020: transform1_MeshPart10
+    4300022: transform1_MeshPart11
+    4300024: transform1_MeshPart12
+    4300026: transform1_MeshPart13
+    4300028: transform1_MeshPart14
+    4300030: transform1_MeshPart15
+    4300032: transform1_MeshPart16
+    4300034: transform1_MeshPart17
+    4300036: transform1_MeshPart18
+    4300038: transform1_MeshPart19
+    4300040: transform1_MeshPart20
+    4300042: transform1_MeshPart21
+    4300044: transform1_MeshPart22
+    4300046: transform1_MeshPart23
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

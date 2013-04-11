@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: 4bb9c3f28aac83e4cb07ac281797f54e
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Creeper_Pattern:Group1
+    100004: Creeper_Pattern:Group10
+    100006: Creeper_Pattern:Group11
+    100008: Creeper_Pattern:Group12
+    100010: Creeper_Pattern:Group13
+    100012: Creeper_Pattern:Group14
+    100014: Creeper_Pattern:Group2
+    100016: Creeper_Pattern:Group3
+    100018: Creeper_Pattern:Group4
+    100020: Creeper_Pattern:Group5
+    100022: Creeper_Pattern:Group6
+    100024: Creeper_Pattern:Group7
+    100026: Creeper_Pattern:Group8
+    100028: Creeper_Pattern:Group9
+    100030: Creeper_Pattern:ZBrush_defualt_group
+    400000: //RootNode
+    400002: Creeper_Pattern:Group1
+    400004: Creeper_Pattern:Group10
+    400006: Creeper_Pattern:Group11
+    400008: Creeper_Pattern:Group12
+    400010: Creeper_Pattern:Group13
+    400012: Creeper_Pattern:Group14
+    400014: Creeper_Pattern:Group2
+    400016: Creeper_Pattern:Group3
+    400018: Creeper_Pattern:Group4
+    400020: Creeper_Pattern:Group5
+    400022: Creeper_Pattern:Group6
+    400024: Creeper_Pattern:Group7
+    400026: Creeper_Pattern:Group8
+    400028: Creeper_Pattern:Group9
+    400030: Creeper_Pattern:ZBrush_defualt_group
+    2300000: Creeper_Pattern:Group1
+    2300002: Creeper_Pattern:Group10
+    2300004: Creeper_Pattern:Group11
+    2300006: Creeper_Pattern:Group12
+    2300008: Creeper_Pattern:Group13
+    2300010: Creeper_Pattern:Group14
+    2300012: Creeper_Pattern:Group2
+    2300014: Creeper_Pattern:Group3
+    2300016: Creeper_Pattern:Group4
+    2300018: Creeper_Pattern:Group5
+    2300020: Creeper_Pattern:Group6
+    2300022: Creeper_Pattern:Group7
+    2300024: Creeper_Pattern:Group8
+    2300026: Creeper_Pattern:Group9
+    2300028: Creeper_Pattern:ZBrush_defualt_group
+    3300000: Creeper_Pattern:Group1
+    3300002: Creeper_Pattern:Group10
+    3300004: Creeper_Pattern:Group11
+    3300006: Creeper_Pattern:Group12
+    3300008: Creeper_Pattern:Group13
+    3300010: Creeper_Pattern:Group14
+    3300012: Creeper_Pattern:Group2
+    3300014: Creeper_Pattern:Group3
+    3300016: Creeper_Pattern:Group4
+    3300018: Creeper_Pattern:Group5
+    3300020: Creeper_Pattern:Group6
+    3300022: Creeper_Pattern:Group7
+    3300024: Creeper_Pattern:Group8
+    3300026: Creeper_Pattern:Group9
+    3300028: Creeper_Pattern:ZBrush_defualt_group
+    4300000: Creeper_Pattern:Group1_MeshPart0
+    4300002: Creeper_Pattern:Group4
+    4300004: Creeper_Pattern:Group5
+    4300006: Creeper_Pattern:Group6
+    4300008: Creeper_Pattern:Group2
+    4300010: Creeper_Pattern:Group9
+    4300012: Creeper_Pattern:Group10
+    4300014: Creeper_Pattern:Group3
+    4300016: Creeper_Pattern:Group13
+    4300018: Creeper_Pattern:Group14
+    4300020: Creeper_Pattern:Group12
+    4300022: Creeper_Pattern:Group11
+    4300024: Creeper_Pattern:Group7
+    4300026: Creeper_Pattern:Group8
+    4300028: Creeper_Pattern:ZBrush_defualt_group
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
