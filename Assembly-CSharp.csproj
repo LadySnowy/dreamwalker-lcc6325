@@ -107,10 +107,13 @@
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\Scripts\CameraCreep.cs" />
      <Compile Include="Assets\Scripts\CreeperMovement.cs" />
+     <Compile Include="Assets\Scripts\DreamwalkerState.cs" />
      <Compile Include="Assets\Scripts\GrabClue.cs" />
      <Compile Include="Assets\Scripts\MenuGUI.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\ScreenShader.cs" />
+     <Compile Include="Assets\Scripts\YouLose.cs" />
+     <Compile Include="Assets\Scripts\YouWin.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Shaders\DissolveDiffuse.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />

@@ -9,22 +9,16 @@ public class GrabClue : MonoBehaviour
 	bool grabbed;
 	bool canBeGrabbed;
 	
-	//AudioClip myClip;
-	// Use this for initialization
 	void Start ()
 	{
 		this.grabbed = false;
 		this.canBeGrabbed = true;
-		//this.audioSource = this.gameObject.GetComponent<AudioSource>();
-		//audio.clip = myClip;
-		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (this.grabbed) {
-			//this.audioSource.audio.PlayOneShot(this.audioSource.clip);
 			audio.Play();
 			StartCoroutine (disappear ());
 			this.grabbed = false;
@@ -34,7 +28,7 @@ public class GrabClue : MonoBehaviour
 	
 	void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Grab Clue Trigger enter!");
+		//Debug.Log ("Grab Clue Trigger enter!");
 		if (this.canBeGrabbed) {
 			this.grabbed = true;
 			this.canBeGrabbed = false;
