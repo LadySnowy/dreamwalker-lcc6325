@@ -39,6 +39,7 @@ public class MenuGUI : MonoBehaviour {
 		// START GAME
 		if(GUI.Button(new Rect(width/2-75,height-100,150,50), "Start Game")) {
 			Application.LoadLevel(1);
+			PlayerScript.Health = 0;
 		}
 	}
 }

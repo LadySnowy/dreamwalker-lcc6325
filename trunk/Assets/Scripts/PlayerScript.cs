@@ -73,6 +73,28 @@ public class PlayerScript : MonoBehaviour
   		this.lastPos = this.gameObject.transform.position;
   		return (displacement.magnitude > 0.05); // return true if char moved 1mm
 	}
-
+	
+	public static double Health = 0;
+	public const double MaxHealth = 10;
+	public const double DamageSpeed = 0.1;
+	void OnGUI ()
+	{
+		GUIStyle style = new GUIStyle ();
+		int x = 0;
+		int y = 0;
+		int w = Screen.width;
+		int h = Screen.height;
+		float r = 1;
+		float g = 1;
+		float b = 1;
+		double a = Health / MaxHealth;
+		Texture2D rgb_texture = new Texture2D(1, 1);
+		rgb_texture.wrapMode = TextureWrapMode.Repeat;
+	    Color rgb_color = new Color(r, g, b, (float)a);
+	    rgb_texture.SetPixel(0, 0, rgb_color);
+	    rgb_texture.Apply();
+	    GUI.skin.box = style;
+	    GUI.DrawTextureWithTexCoords(new Rect (x,y,w,h), rgb_texture, new Rect(0, 0, 1, 1));
+	}
 }
 
