@@ -123,6 +123,12 @@ public class CreeperMovement : MonoBehaviour
 				this.collided = false;
 			}
 			
+			PlayerScript.Health += PlayerScript.DamageSpeed;
+			
+			if (PlayerScript.Health > PlayerScript.MaxHealth){
+				//End Game
+				Application.LoadLevel(2);
+			}
 		}
 		if (!this.grabbed) { //easy way to "pause"
 			
@@ -375,5 +381,7 @@ public class CreeperMovement : MonoBehaviour
 		}
 		
 	}
+	
+	
 			
 }
