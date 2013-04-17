@@ -65,6 +65,8 @@ public class CreeperMovement : MonoBehaviour
 	public DreamwalkerState dreamwalkerState;
 	bool chasePhase;
 	
+	public float NO_COLLISION_DIST;
+	
 	void Start ()
 	{
 		
@@ -119,17 +121,16 @@ public class CreeperMovement : MonoBehaviour
 		if (this.collided) {
 			DateTime now = DateTime.Now;
 			TimeSpan diff = now - this.lastHitTime;
-			if (diff.Seconds > CREEPER_HIT_DELTA) {
+			this.dreamwalkerState.DrainPlayerHealth();
+			
+			float playerDistance = Vector3.Distance (this.creeper.transform.position, this.player.transform.position);
+			
+			if (playerDistance > NO_COLLISION_DIST) {
+			//if (diff.Seconds > CREEPER_HIT_DELTA) {
 				this.collided = false;
 			}
-			
-			PlayerScript.Health += PlayerScript.DamageSpeed;
-			
-			if (PlayerScript.Health > PlayerScript.MaxHealth){
-				//End Game
-				Application.LoadLevel(2);
-			}
 		}
+		
 		if (!this.grabbed) { //easy way to "pause"
 			
 			if (!whisperAudio.isPlaying) {
@@ -374,14 +375,14 @@ public class CreeperMovement : MonoBehaviour
 		//Debug.Log ("CREEPER MOVEMENT HIT " + hit.gameObject.name);
 		if ((hit.gameObject.tag.Equals ("Player")) && !this.collided) {
 			Debug.Log ("Creeper collision: " + DateTime.Now);
-			//LIZZY: SCREEN SHAKE!!!! :)
-			this.dreamwalkerState.creeperHit (this.goalCreeper);
-			this.collided = true;
-			this.lastHitTime = DateTime.Now;
+			if (this.dreamwalkerState.ShouldCreeperHitCount(this.goalCreeper)) {
+				Debug.Log("Registering creeper hit");
+				this.dreamwalkerState.creeperHit (this.goalCreeper);
+				this.collided = true;
+				this.lastHitTime = DateTime.Now;
+			}
 		}
 		
 	}
 	
-	
-			
 }
