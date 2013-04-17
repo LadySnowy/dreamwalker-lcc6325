@@ -21,6 +21,8 @@ public class DreamwalkerState : MonoBehaviour
 	
 	bool showHint;
 	
+	public PlayerScript playerScript;
+	
 	// Use this for initialization
 	void Start ()
 	{
@@ -44,9 +46,13 @@ public class DreamwalkerState : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (this.numCreeperHits >= this.allowedCreeperHits) {
-			Application.LoadLevel ("YouLose");
+		if (this.playerScript.Health <= this.playerScript.MinHealth) {
+			//End Game
+			Application.LoadLevel("YouLose");
 		}
+		//if (this.numCreeperHits >= this.allowedCreeperHits) {
+		//	Application.LoadLevel ("YouLose");
+		//}
 		if (this.chasePhase) {
 			float exitDistance = Vector3.Distance (this.exit.transform.position, this.player.transform.position);
 			if (exitDistance < ALLOWED_EXIT_DIST) {
@@ -77,15 +83,21 @@ public class DreamwalkerState : MonoBehaviour
 		}
 	}
 		
+	public bool ShouldCreeperHitCount(bool goal) {
+		return (!this.chasePhase || !goal);
+	}
+	
+	//call only if shouldCreeperHitCount returns true
 	public void creeperHit (bool goal)
 	{
-		if (!this.chasePhase || !goal) {
-			this.numCreeperHits++;
-		}
-		Debug.Log ("DreamwalkerState creeper hit count: " + this.numCreeperHits);
+		//if (!this.chasePhase || !goal) {
+		//	this.numCreeperHits++;
+		//}
+		//Debug.Log ("DreamwalkerState creeper hit count: " + this.numCreeperHits);
 		
 		if (this.allCluesGrabbed && goal) {
 			//chase phase!
+			this.playerScript.retrievalEvent();
 			//fog off
 			RenderSettings.fog = false;
 			//all creepers enter chase phase!
@@ -97,7 +109,11 @@ public class DreamwalkerState : MonoBehaviour
 			this.exit.renderer.enabled = true;
 		}
 	}
-
+	
+	public void DrainPlayerHealth() {
+		this.playerScript.Health -= this.playerScript.CreeperDrainTick;
+	}
+	
 	void OnGUI ()
 	{
 		int startX = Screen.width - 200;
