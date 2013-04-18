@@ -22,10 +22,10 @@ public class MenuGUI : MonoBehaviour {
 		Rect titleRect = GUILayoutUtility.GetRect(content, style);
 		Rect placedRect = new Rect(width/2 - titleRect.width/2, titleRect.height, titleRect.width, titleRect.height);
 		GUI.Label (placedRect, content, style);
-		GUI.Box(new Rect(width/2-250,50,500,height-100), "");
+		//GUI.Box(new Rect(width/2-250,50,500,height-100), "");
 		
-		string text = "You drift off to a deep sleep filled with dreams. Within one dream, you encounter a parent who fears that her child, currently in a coma, has lost her spirit. Knowing that her child is not the same, she pleads with you to recover it. Startled, and wondering if you could accomplish such a task, you find yourself being pulled into an eerie dream world. As you leave the distressed parent, she says, \"clues will lead you to my child's spirit. Find her spirit and recover it... but beware what you encounter...\"";
-		GUI.TextArea(new Rect(width/2-200, 100, 400, 140),text);
+		//string text = "You drift off to a deep sleep filled with dreams. Within one dream, you encounter a parent who fears that her child, currently in a coma, has lost her spirit. Knowing that her child is not the same, she pleads with you to recover it. Startled, and wondering if you could accomplish such a task, you find yourself being pulled into an eerie dream world. As you leave the distressed parent, she says, \"clues will lead you to my child's spirit. Find her spirit and recover it... but beware what you encounter...\"";
+		//GUI.TextArea(new Rect(width/2-200, 100, 400, 140),text);
 		
 		// CONTROLS
 		GUI.Label(new Rect(width/2-40, 240, 100, 50), "Controls");

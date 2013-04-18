@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 0ac396249cf6b8d4b858ed2d074a334f
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Thanks: {fileID: 8300000, guid: 0bf34b8ef0c4d7246818be243b96b42b, type: 3}
+  - Laughter: {fileID: 8300000, guid: 5e8b1c4d970932540a31e7a36891612e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

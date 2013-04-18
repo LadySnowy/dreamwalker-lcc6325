@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Intro Sound.js" />
+     <Compile Include="Assets\Scripts\LoseCutScene.js" />
+     <Compile Include="Assets\Scripts\Win Sounds.js" />
+     <Compile Include="Assets\Scripts\WinCutScene.js" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Shaders\DissolveDiffuse.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
