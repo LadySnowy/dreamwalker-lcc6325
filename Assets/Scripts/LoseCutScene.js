@@ -1,4 +1,5 @@
 #pragma strict
+import System;
 
 var OpeningDoor:AudioSource;
 var EvilLaugh:AudioSource;
@@ -12,15 +13,29 @@ var Cracked:Texture2D;
 
 var Alpha : float;
 
+var last : DateTime;
+
 function Start ()
 {
-	Alpha = 1.0;
+	Alpha = 0.0;
+	this.last = DateTime.Now;
 }
 
 function Update ()
 {
 
-	if (Time.time > 1 && Time.time < 5)
+	var cur = DateTime.Now;
+	
+	var openingTS = new TimeSpan(0, 0, 0, 3, 0);
+	var openingStart = this.last + openingTS;
+	
+	var laughTS = new TimeSpan(0, 0, 0, 4, 0);
+	var laughStart = openingStart + laughTS;
+
+	var laughDurationTS = new TimeSpan(0, 0, 0, 4, 0);
+	var laughEnd = laughStart + laughDurationTS;
+	
+	if (cur > openingStart && cur < laughStart) // && Time.time < this.last + 6)
 	{
 		if (!OpeningDoorPlayed)
 		{
@@ -28,7 +43,9 @@ function Update ()
 			OpeningDoorPlayed = true;
 		}
 	}
-	if (Time.time > 5)
+	
+	
+	if (cur > laughStart && cur < laughEnd)
 	{
 		if (!EvilLaughPlayed)
 		{
@@ -44,32 +61,52 @@ function OnGUI() {
         KeyPressedEventHandler();
     }
     
-	if (Time.time > 1 && Time.time < 3)
-	{
+	var cur = DateTime.Now;
+	var crackedTS = new TimeSpan(0, 0, 0, 2, 0);
+	var crackedStart = this.last + crackedTS;
+
+	var closedTS = new TimeSpan(0, 0, 0, 3, 0);
+	var closedStart = crackedStart + closedTS;
+
+	var openTS = new TimeSpan(0, 0, 0, 3, 0);
+	var openStart = closedStart + openTS;
+
+	var openFadeTS = new TimeSpan(0, 0, 0, 3, 0);
+	var openFadeStart = openStart + openFadeTS;
+	
+	var nextSceneTS = new TimeSpan(0, 0, 0, 2, 0);
+	var nextSceneStart = openFadeStart + nextSceneTS;
+	
+	if (cur > crackedStart && cur < closedStart) {
 		FadeIn();
+		PlaceImage(ClosedDoor);
+		
+	}    
+
+	
+	if (cur > closedStart && cur < openStart)
+	{
 		PlaceImage(Cracked);
 	}
 
-	if (Time.time > 3 && Time.time < 5)
-	{
-		PlaceImage(ClosedDoor);
-	}
 
-	if (Time.time > 5 && Time.time < 9)
+	if (cur > openStart && cur < openFadeStart)
 	{
 		PlaceImage(OpenDoor);
 	}
 
-	if (Time.time > 9 && Time.time < 10)
+
+	if (cur > openFadeStart && cur < nextSceneStart)
 	{
 		FadeOut();
 		PlaceImage(OpenDoor);
 	}
 
-	if (Time.time > 11 && Time.time < 20)
+	if (cur > nextSceneStart)
 	{
 		Application.LoadLevel("Menu");
 	}
+
 	
 }
 

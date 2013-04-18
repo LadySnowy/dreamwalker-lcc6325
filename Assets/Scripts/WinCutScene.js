@@ -8,15 +8,26 @@ var Newspaper:Texture2D;
 
 var Alpha : float;
 
+var last : DateTime;
+
 function Start ()
 {
-	Alpha = 1.0;
+	Alpha = 0.0;
+	this.last = DateTime.Now;
 }
 
 function Update ()
 {
 
-	if (Time.time > 3 && Time.time < 8)
+	var cur = DateTime.Now;
+	
+	var openingTS = new TimeSpan(0, 0, 0, 3, 0);
+	var laughStart = this.last + openingTS;
+	
+	var laughTS = new TimeSpan(0, 0, 0, 6, 0);
+	var laughEnd = laughStart + laughTS;
+
+	if (cur > laughStart && cur < laughEnd)
 	{
 		if (!LaughPlayed)
 		{
@@ -26,6 +37,12 @@ function Update ()
 		}
 	}
 	
+	if (cur > laughEnd) {
+		if (LaughPlayed) {
+			Laugh.Stop();
+		}
+	}
+
 }
 
 function OnGUI() {
@@ -34,25 +51,35 @@ function OnGUI() {
         KeyPressedEventHandler();
     }
 
-	if (Time.time > 3 && Time.time < 5)
-	{
+	var cur = DateTime.Now;
+	
+	var fadeInTS = new TimeSpan(0, 0, 0, 3, 0);
+	var fadeInNewspaperStart = this.last + fadeInTS;
+
+	var newspaperTS = new TimeSpan(0, 0, 0, 2, 0);
+	var newspaperStart = fadeInNewspaperStart + newspaperTS;
+
+	var fadeOutTS = new TimeSpan(0, 0, 0, 5, 0);
+	var fadeOutNewspaperStart = newspaperStart + fadeOutTS;
+
+	var loadTS = new TimeSpan(0, 0, 0, 2, 0);
+	var loadStart = fadeOutNewspaperStart + loadTS;
+	
+	if (cur > fadeInNewspaperStart && cur < newspaperStart) {
 		FadeIn();
 		PlaceImage(Newspaper);
 	}
 
-		if (Time.time > 5 && Time.time < 10)
-	{
+	if (cur > newspaperStart && cur < fadeOutNewspaperStart) {
 		PlaceImage(Newspaper);
 	}
 
-	if (Time.time > 10 && Time.time < 12)
-	{
+	if (cur > fadeOutNewspaperStart && cur < loadStart) {
 		FadeOut();
 		PlaceImage(Newspaper);
 	}
 
-	if (Time.time > 12 && Time.time < 20)
-	{
+		if (cur > loadStart) {
 		Application.LoadLevel("Menu");
 	}
 	

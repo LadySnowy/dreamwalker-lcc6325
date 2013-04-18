@@ -1,15 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WinCutScene.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LoseCutScene.js">
     <Files>
       <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/CreeperMovement.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DreamwalkerState.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GrabClue.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MenuGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Intro Sound.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LoseCutScene.js" Line="69" Column="39" />
-      <File FileName="Assets/Scripts/WinCutScene.js" Line="19" Column="19" />
+      <File FileName="Assets/Scripts/Intro Sound.js" Line="128" Column="24" />
+      <File FileName="Assets/Scripts/LoseCutScene.js" Line="89" Column="23" />
+      <File FileName="Assets/Scripts/WinCutScene.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

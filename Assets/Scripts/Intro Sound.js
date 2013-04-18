@@ -19,9 +19,12 @@ var Pleading:Texture2D;
 
 var Alpha : float;
 
+var last : DateTime;
+
 function Start ()
 {
 	Alpha = 1.0;
+	this.last = DateTime.Now;
 }
 
 function Update ()
@@ -31,7 +34,27 @@ function Update ()
 		Memo.Play();
 	}
 	
-	if (Time.time > 2 && Time.time < 8)
+	var cur = DateTime.Now;
+	
+	var yawnTS = new TimeSpan(0, 0, 0, 2, 0);
+	var yawnStart = this.last + yawnTS;
+	
+	var yawnEndTS = new TimeSpan(0, 0, 0, 6, 0);
+	var yawnEnd = yawnStart + yawnEndTS;
+
+	var deadspaceTS = new TimeSpan(0, 0, 0, 2, 0);
+	var deadspaceEnd = yawnEnd + deadspaceTS;
+
+	var cryingTS = new TimeSpan(0, 0, 0, 10, 0);
+	var cryingEnd = deadspaceEnd + cryingTS;
+
+	var cryingDeadspaceTS = new TimeSpan(0, 0, 0, 5, 0);
+	var cryingDeadspaceEnd = cryingEnd + cryingDeadspaceTS;
+
+	var dialogTS = new TimeSpan(0, 0, 0, 5, 0);
+	var dialogEnd = cryingDeadspaceEnd + dialogTS;
+
+	if (cur > yawnStart && cur < yawnEnd)
 	{
 		if (!YawnPlayed)
 		{
@@ -40,8 +63,8 @@ function Update ()
 			
 		}
 	}
-	
-	if (Time.time > 10 && Time.time < 20)
+		
+	if (cur > deadspaceEnd && cur < cryingEnd)
 	{
 		if (!CryingPlayed)
 		{
@@ -51,7 +74,7 @@ function Update ()
 		}
 	}
 	
-	if (Time.time > 22 && Time.time < 27)
+	if (cur > cryingDeadspaceEnd && cur < dialogEnd)
 	{
 		if (!DialogPlayed)
 		{
@@ -69,61 +92,89 @@ function OnGUI() {
         KeyPressedEventHandler();
     }
 
-	if (Time.time > 2 && Time.time < 4)
-	{
-		PlaceImage(Sleeping3);
-	}
+	var cur = DateTime.Now;
+	var sleeping3TS = new TimeSpan(0, 0, 0, 2, 0);
+	var sleeping3Start = this.last + sleeping3TS;
 
-		if (Time.time > 4 && Time.time < 6)
+	var sleeping3DurationTS = new TimeSpan(0, 0, 0, 2, 0);
+	var sleeping3End = sleeping3Start + sleeping3DurationTS;
+
+	var sleeping2DurationTS = new TimeSpan(0, 0, 0, 2, 0);
+	var sleeping2End = sleeping3End + sleeping2DurationTS;
+
+	var sleepingDurationTS = new TimeSpan(0, 0, 0, 2, 0);
+	var sleepingEnd = sleeping2End + sleepingDurationTS;
+	
+	var sleepingFadeOutDurationTS = new TimeSpan(0, 0, 0, 2, 0);
+	var sleepingFadeOutStart = sleepingEnd + sleepingFadeOutDurationTS;
+
+	var cryingFadeInDurationTS = new TimeSpan(0, 0, 0, 10, 0);
+	var cryingFadeInStart = sleepingFadeOutStart + cryingFadeInDurationTS;
+
+	var cryingFadeOutDurationTS = new TimeSpan(0, 0, 0, 1, 0);
+	var cryingFadeOutStart = cryingFadeInStart + cryingFadeOutDurationTS;
+
+	var lookingUpFadeInTS = new TimeSpan(0, 0, 0, 5, 0);
+	var lookingUpFadeInStart = cryingFadeOutStart + lookingUpFadeInTS;
+
+	var pleadingDurationTS = new TimeSpan(0, 0, 0, 13, 0);
+	var pleadingEnd = lookingUpFadeInStart + pleadingDurationTS;
+
+	var pleadingFadeOutTS = new TimeSpan(0, 0, 0, 4, 0);
+	var pleadingFadeOutStart = pleadingEnd + pleadingFadeOutTS;
+
+	if (cur > sleeping3Start && cur < sleeping3End)
+	{
+		PlaceImage(Sleeping);
+	}
+	
+	if (cur > sleeping3End && cur < sleeping2End)
 	{
 		PlaceImage(Sleeping2);
 	}
 
-		if (Time.time > 6 && Time.time < 8)
+	if (cur > sleeping2End && cur < sleepingEnd)
 	{
-		PlaceImage(Sleeping);
+		PlaceImage(Sleeping3);
 	}
 
-	if (Time.time > 8 && Time.time < 10) {
+	if (cur > sleepingEnd && cur < sleepingFadeOutStart)
+	{
 		FadeOut();
-		PlaceImage(Sleeping);
+		PlaceImage(Sleeping3);
 	}
 	
-	if (Time.time > 10 && Time.time < 20)
+	if (cur > sleepingFadeOutStart && cur < cryingFadeInStart)
 	{
 		FadeIn();
 		PlaceImage(CryingArt);
 	}
 	
-	if (Time.time > 20 && Time.time < 21) {
+	if (cur > cryingFadeInStart && cur < cryingFadeOutStart)
+	{
 		FadeOut();
 		PlaceImage(CryingArt);	
 	}
 	
-	if (Time.time > 21 && Time.time < 22)
+	if (cur > cryingFadeOutStart && cur < lookingUpFadeInStart)
 	{
 		FadeIn();
 		PlaceImage(LookingUp);
 	}
 	
-	if (Time.time > 22 && Time.time < 26)
-	{
-		PlaceImage(LookingUp);
-	}
-
-
-	if (Time.time > 26 && Time.time < 38)
+	if (cur > lookingUpFadeInStart && cur < pleadingEnd)
 	{
 		PlaceImage(Pleading);
 	}
 	
-	if (Time.time > 38 && Time.time < 40)
+	if (cur > pleadingEnd && cur < pleadingFadeOutStart)
 	{
 		FadeOut();
 		PlaceImage(Pleading);
 	}
 	
-	if (Time.time > 41) {
+	if (cur > pleadingFadeOutStart)
+	{
 		Application.LoadLevel("Menu");
 	}
 }
