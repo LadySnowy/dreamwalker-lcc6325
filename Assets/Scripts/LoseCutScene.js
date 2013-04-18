@@ -20,7 +20,7 @@ function Start ()
 function Update ()
 {
 
-	if (Time.time > 3 && Time.time < 7)
+	if (Time.time > 1 && Time.time < 5)
 	{
 		if (!OpeningDoorPlayed)
 		{
@@ -55,18 +55,18 @@ function OnGUI() {
 		PlaceImage(ClosedDoor);
 	}
 
-	if (Time.time > 5 && Time.time < 10)
+	if (Time.time > 5 && Time.time < 9)
 	{
 		PlaceImage(OpenDoor);
 	}
 
-	if (Time.time > 10 && Time.time < 12)
+	if (Time.time > 9 && Time.time < 10)
 	{
 		FadeOut();
 		PlaceImage(OpenDoor);
 	}
 
-	if (Time.time > 14 && Time.time < 20)
+	if (Time.time > 11 && Time.time < 20)
 	{
 		Application.LoadLevel("Menu");
 	}

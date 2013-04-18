@@ -16,7 +16,7 @@ function Start ()
 function Update ()
 {
 
-	if (Time.time > 2 && Time.time < 8)
+	if (Time.time > 3 && Time.time < 8)
 	{
 		if (!LaughPlayed)
 		{
