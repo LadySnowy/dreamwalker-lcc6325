@@ -31,10 +31,6 @@ function Update ()
 		Memo.Play();
 	}
 	
-	if (Input.GetKey ("space")) {
-		Application.LoadLevel("Menu");
-	}
-	
 	if (Time.time > 2 && Time.time < 8)
 	{
 		if (!YawnPlayed)
@@ -68,6 +64,11 @@ function Update ()
 }
 
 function OnGUI() {
+
+	if (Event.current.type == EventType.KeyDown) {
+        KeyPressedEventHandler();
+    }
+
 	if (Time.time > 2 && Time.time < 4)
 	{
 		PlaceImage(Sleeping3);
@@ -86,7 +87,6 @@ function OnGUI() {
 	if (Time.time > 8 && Time.time < 10) {
 		FadeOut();
 		PlaceImage(Sleeping);
-		Debug.Log("Setting GUI alpha: " + GUI.color.a);
 	}
 	
 	if (Time.time > 10 && Time.time < 20)
@@ -126,6 +126,10 @@ function OnGUI() {
 	if (Time.time > 41) {
 		Application.LoadLevel("Menu");
 	}
+}
+
+function KeyPressedEventHandler() {
+	Application.LoadLevel("Menu");
 }
 
 function FadeOut() {

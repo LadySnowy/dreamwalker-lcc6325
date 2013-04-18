@@ -48,7 +48,7 @@ public class DreamwalkerState : MonoBehaviour
 	{
 		if (this.playerScript.Health <= this.playerScript.MinHealth) {
 			//End Game
-			Application.LoadLevel("YouLose");
+			Application.LoadLevel("Lose");
 		}
 		//if (this.numCreeperHits >= this.allowedCreeperHits) {
 		//	Application.LoadLevel ("YouLose");
