@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 6e320eb761d960040a48d2b374648559
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Yawn: {fileID: 8300000, guid: 6360e96940b31314196f67d5dd2a7e50, type: 3}
+  - Crying: {fileID: 8300000, guid: 8085ee876e1900c4aa9a917796189ad2, type: 3}
+  - Dialog: {fileID: 8300000, guid: ca1f3b1c45732a6479859331e8defa00, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
