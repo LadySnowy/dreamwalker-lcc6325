@@ -6,7 +6,6 @@ public class DreamwalkerState : MonoBehaviour
 		
 	public Texture2D[] clues;
 	bool[] clueVisible;
-	public int allowedCreeperHits;
 	int numCreeperHits;
 	bool allCluesGrabbed;
 	public CreeperMovement[] allCreepers;
@@ -48,15 +47,12 @@ public class DreamwalkerState : MonoBehaviour
 	{
 		if (this.playerScript.Health <= this.playerScript.MinHealth) {
 			//End Game
-			Application.LoadLevel("Lose");
+			Application.LoadLevel("LosePauseScene");
 		}
-		//if (this.numCreeperHits >= this.allowedCreeperHits) {
-		//	Application.LoadLevel ("YouLose");
-		//}
 		if (this.chasePhase) {
 			float exitDistance = Vector3.Distance (this.exit.transform.position, this.player.transform.position);
 			if (exitDistance < ALLOWED_EXIT_DIST) {
-				Application.LoadLevel("YouWin");
+				Application.LoadLevel("PauseScene");
 			}
 		}
 		
@@ -84,6 +80,8 @@ public class DreamwalkerState : MonoBehaviour
 	}
 		
 	public bool ShouldCreeperHitCount(bool goal) {
+		//bool lastCreeper = this.allCluesGrabbed && goal;
+		//if (lastCreeper) return false;
 		return (!this.chasePhase || !goal);
 	}
 	

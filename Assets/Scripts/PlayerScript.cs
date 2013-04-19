@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour
 	public AudioSource wind;
 	public AudioSource retrieval;
 	public AudioSource found;
-	public AudioSource bringHer;
+	//public AudioSource bringHer;
 	public double windProbability;
 	public DreamwalkerState dreamwalkerState;
 	Vector3 lastPos;
@@ -100,12 +100,14 @@ public class PlayerScript : MonoBehaviour
 		while (this.found.isPlaying) {
 			yield return new WaitForSeconds(0.25f);
 		}
-
+		
+		/*
 		this.bringHer.Play ();
 		
 		while (this.bringHer.isPlaying) {
 			yield return new WaitForSeconds(0.25f);
 		}
+		*/
 		
 	}
 	
