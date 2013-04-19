@@ -29,7 +29,7 @@ function Update ()
 	var openingTS = new TimeSpan(0, 0, 0, 3, 0);
 	var openingStart = this.last + openingTS;
 	
-	var laughTS = new TimeSpan(0, 0, 0, 4, 0);
+	var laughTS = new TimeSpan(0, 0, 0, 4.5, 0);
 	var laughStart = openingStart + laughTS;
 
 	var laughDurationTS = new TimeSpan(0, 0, 0, 4, 0);

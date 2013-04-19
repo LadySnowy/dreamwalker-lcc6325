@@ -28,7 +28,7 @@ public class CreeperMovement : MonoBehaviour
 	public float rotationVelocity;
 	public float WAYPOINT_DIST;
 	DateTime enabledTrailTime;
-	DateTime lastHitTime;
+	//DateTime lastHitTime;
 	bool trailDisplay;
 	public float TRAIL_SHOW_TIME_SECS;
 	public GameObject pathLine;
@@ -111,7 +111,7 @@ public class CreeperMovement : MonoBehaviour
 		this.chasePhase = true;
 		this.PLAYER_PROXIMITY = 5000; //change based on level dimensions!
 		audioChasePauseTimeSeconds = 0;
-		this.chaseMaxVelocity = 6;
+		this.chaseMaxVelocity = 12;
 	}
 	
 	// Update is called once per frame
@@ -120,7 +120,7 @@ public class CreeperMovement : MonoBehaviour
 	
 		if (this.collided) {
 			DateTime now = DateTime.Now;
-			TimeSpan diff = now - this.lastHitTime;
+			//TimeSpan diff = now - this.lastHitTime;
 			this.dreamwalkerState.DrainPlayerHealth();
 			
 			float playerDistance = Vector3.Distance (this.creeper.transform.position, this.player.transform.position);
@@ -150,8 +150,12 @@ public class CreeperMovement : MonoBehaviour
 				TimeSpan chaseAudioDelta = audioChaseCheckTime - this.chasePlayTime;
 				TimeSpan audioChaseGapTime = new TimeSpan (0, 0, this.audioChasePauseTimeSeconds);
 				if (!chaseAudio.isPlaying && (chaseAudioDelta > audioChaseGapTime)) {
-					chaseAudio.Play ();
-					this.chasePlayTime = DateTime.Now;
+					if (this.chasePhase && this.goalCreeper) {
+						//don't play audio when "child" is chasing player...
+					} else {
+						chaseAudio.Play ();
+						this.chasePlayTime = DateTime.Now;
+					}
 				}
 				destination = this.player.transform.position;
 				this.gameObject.GetComponent<TrailRenderer> ().enabled = false;
@@ -374,12 +378,12 @@ public class CreeperMovement : MonoBehaviour
 		
 		//Debug.Log ("CREEPER MOVEMENT HIT " + hit.gameObject.name);
 		if ((hit.gameObject.tag.Equals ("Player")) && !this.collided) {
-			Debug.Log ("Creeper collision: " + DateTime.Now);
+			//Debug.Log ("Creeper collision: " + DateTime.Now);
+			//Debug.Log("Registering creeper hit");
+			this.dreamwalkerState.creeperHit (this.goalCreeper);
 			if (this.dreamwalkerState.ShouldCreeperHitCount(this.goalCreeper)) {
-				Debug.Log("Registering creeper hit");
-				this.dreamwalkerState.creeperHit (this.goalCreeper);
 				this.collided = true;
-				this.lastHitTime = DateTime.Now;
+				//this.lastHitTime = DateTime.Now;
 			}
 		}
 		

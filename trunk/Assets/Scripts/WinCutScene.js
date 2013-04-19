@@ -86,7 +86,14 @@ function OnGUI() {
 }
 
 function KeyPressedEventHandler() {
-	Application.LoadLevel("Menu");
+	var cur = DateTime.Now;
+	
+	var loadLevelTS = new TimeSpan(0, 0, 0, 5, 0);
+	var loadLevelKeypressStart = this.last + loadLevelTS;
+	
+	if (cur > loadLevelKeypressStart) {
+		Application.LoadLevel("Menu");
+	}
 }
 
 function FadeOut() {

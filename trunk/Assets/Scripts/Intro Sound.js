@@ -5,10 +5,12 @@ var Yawn:AudioSource;
 var Crying:AudioSource;
 var Dialog:AudioSource;
 var Memo:AudioSource;
+var YouAreHere:AudioSource;
 
 var YawnPlayed = false;
 var CryingPlayed = false;
 var DialogPlayed = false;
+var YouAreHerePlayed = false;
 
 var Sleeping:Texture2D;
 var Sleeping2:Texture2D;
@@ -48,11 +50,14 @@ function Update ()
 	var cryingTS = new TimeSpan(0, 0, 0, 10, 0);
 	var cryingEnd = deadspaceEnd + cryingTS;
 
-	var cryingDeadspaceTS = new TimeSpan(0, 0, 0, 5, 0);
+	var cryingDeadspaceTS = new TimeSpan(0, 0, 0, 1, 0);
 	var cryingDeadspaceEnd = cryingEnd + cryingDeadspaceTS;
 
+	var youAreHereTS = new TimeSpan(0, 0, 0, 2, 0);
+	var youAreHereEnd = cryingDeadspaceEnd + youAreHereTS;
+
 	var dialogTS = new TimeSpan(0, 0, 0, 5, 0);
-	var dialogEnd = cryingDeadspaceEnd + dialogTS;
+	var dialogEnd = youAreHereEnd + dialogTS;
 
 	if (cur > yawnStart && cur < yawnEnd)
 	{
@@ -74,7 +79,16 @@ function Update ()
 		}
 	}
 	
-	if (cur > cryingDeadspaceEnd && cur < dialogEnd)
+	if (cur > cryingDeadspaceEnd && cur < youAreHereEnd)
+	{
+		if (!YouAreHerePlayed)
+		{
+			YouAreHerePlayed = true;
+			YouAreHere.Play();
+		}
+	}
+	
+	if (cur > youAreHereEnd && cur < dialogEnd)
 	{
 		if (!DialogPlayed)
 		{
@@ -89,7 +103,9 @@ function Update ()
 function OnGUI() {
 
 	if (Event.current.type == EventType.KeyDown) {
-        KeyPressedEventHandler();
+		if (!Input.GetKey ("b")) {
+        	KeyPressedEventHandler();
+        }
     }
 
 	var cur = DateTime.Now;
@@ -114,13 +130,19 @@ function OnGUI() {
 	var cryingFadeOutDurationTS = new TimeSpan(0, 0, 0, 1, 0);
 	var cryingFadeOutStart = cryingFadeInStart + cryingFadeOutDurationTS;
 
-	var lookingUpFadeInTS = new TimeSpan(0, 0, 0, 5, 0);
+	var lookingUpFadeInTS = new TimeSpan(0, 0, 0, 3, 0);
 	var lookingUpFadeInStart = cryingFadeOutStart + lookingUpFadeInTS;
+	
+	var theCluesTextTS = new TimeSpan(0, 0, 0, 4, 0); //text
+	var theCluesTextStart = lookingUpFadeInStart + theCluesTextTS;
+	
+	var whenYouFindTextTS = new TimeSpan(0, 0, 0, 3.75, 0); //text
+	var whenYouFindTextStart = theCluesTextStart + whenYouFindTextTS;
 
 	var pleadingDurationTS = new TimeSpan(0, 0, 0, 13, 0);
 	var pleadingEnd = lookingUpFadeInStart + pleadingDurationTS;
 
-	var pleadingFadeOutTS = new TimeSpan(0, 0, 0, 4, 0);
+	var pleadingFadeOutTS = new TimeSpan(0, 0, 0, 2, 0);
 	var pleadingFadeOutStart = pleadingEnd + pleadingFadeOutTS;
 
 	if (cur > sleeping3Start && cur < sleeping3End)
@@ -162,11 +184,57 @@ function OnGUI() {
 		PlaceImage(LookingUp);
 	}
 	
+	var hintX: int;
+	var hintY = Screen.height - 75;
+		
+	var style = new GUIStyle ();
+	style.fontSize = 24;
+	style.normal.textColor = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+	
+	var please : String;
+	var content : GUIContent;
+	var hintRect : Rect;
+	var placedRect : Rect;
+	
+	var xPlacement : double;
+
 	if (cur > lookingUpFadeInStart && cur < pleadingEnd)
 	{
+		placedRect = PlaceImage(Pleading);
+		please = "Please, help me...";
+		content = new GUIContent(please);
+		hintRect = GUILayoutUtility.GetRect(content, style);
+		xPlacement = Screen.width / 2;
+		xPlacement = xPlacement - 100; //dunno why, but hintRect.width is not set correctly for the text (it's 1024...)
+		placedRect = new Rect(xPlacement, hintY, hintRect.width, hintRect.height);
+		GUI.Label (placedRect, please, style);
+	}
+
+	if (cur > theCluesTextStart && cur < whenYouFindTextStart)
+	{
 		PlaceImage(Pleading);
+		please = "The clues will lead you to my child...";
+		content = new GUIContent(please);
+		hintRect = GUILayoutUtility.GetRect(content, style);
+		xPlacement = Screen.width / 2;
+		xPlacement = xPlacement - 200; //dunno why, but hintRect.width is not set correctly for the text (it's 1024...)
+		placedRect = new Rect(xPlacement, hintY, hintRect.width, hintRect.height);
+		GUI.Label (placedRect, please, style);	
 	}
 	
+	if (cur > whenYouFindTextStart && cur < pleadingEnd)
+	//if (cur > this.last && cur < whenYouFindTextStart)
+	{
+		PlaceImage(Pleading);
+		please = "When you find her she will follow you to the light, but beware of what you encounter...";
+		content = new GUIContent(please);
+		hintRect = GUILayoutUtility.GetRect(content, style);
+		xPlacement = Screen.width / 2;
+		xPlacement = xPlacement - 450; //dunno why, but hintRect.width is not set correctly for the text (it's 1024...)
+		placedRect = new Rect(xPlacement, hintY, hintRect.width, hintRect.height);
+		GUI.Label (placedRect, please, style);
+	}
+		
 	if (cur > pleadingEnd && cur < pleadingFadeOutStart)
 	{
 		FadeOut();
@@ -202,8 +270,8 @@ function PlaceImage(image:Texture2D) {
 		var yPos = Screen.height - image.height;
 		yPos = yPos / 2;
 		var guiContent = new GUIContent(image);
-		var rect = GUILayoutUtility.GetRect(image.width, image.height);//, style);
+		var rect = GUILayoutUtility.GetRect(image.width, image.height);
 		var placedRect = new Rect(xPos, yPos, rect.width, rect.height);
-		GUI.Label (placedRect, guiContent);		
-
+		GUI.Label (placedRect, guiContent);	
+		return placedRect;	
 }
