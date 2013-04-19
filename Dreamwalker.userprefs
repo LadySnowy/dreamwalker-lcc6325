@@ -1,13 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuGUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\NoFogShader.shader">
     <Files>
-      <File FileName="Assets\Scripts\CreeperMovement.cs" Line="136" Column="44" />
-      <File FileName="Assets\Scripts\PlayerScript.cs" Line="97" Column="90" />
-      <File FileName="Assets\Scripts\MenuGUI.cs" Line="42" Column="28" />
-      <File FileName="Assets\Scripts\GrabClue.cs" Line="59" Column="1" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" Line="30" Column="2" />
-      <File FileName="Assets\Scripts\DreamwalkerState.cs" Line="139" Column="1" />
+      <File FileName="Assets\Shaders\NoFogShader.shader" Line="13" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
