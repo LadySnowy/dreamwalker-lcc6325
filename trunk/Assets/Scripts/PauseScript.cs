@@ -34,7 +34,7 @@ public class PauseScript : MonoBehaviour
 		Rect placedRect;
 		float xPlacement;
 
-		please = "Press any key...";
+		please = "Press spacebar...";
 		content = new GUIContent (please);
 		hintRect = GUILayoutUtility.GetRect (content, style);
 		xPlacement = Screen.width / 2;
