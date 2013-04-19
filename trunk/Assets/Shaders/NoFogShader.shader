@@ -10,7 +10,7 @@ Shader "Custom/NoFogShader" {
 
     SubShader {
         Pass {
-        	Fog { Mode Exp Color (.55,.55,.55,1) }
+        	Fog { Mode Exp Color (.6,.6,.6,1) }
             Material {
                 Diffuse [_Color]
                 Ambient [_Color]

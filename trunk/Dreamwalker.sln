@@ -9,6 +9,8 @@ Project("{B84F82DE-0161-3DAA-7B68-0CC205253A46}") = "Dreamwalker", "Assembly-CSh
 EndProject
 Project("{B84F82DE-0161-3DAA-7B68-0CC205253A46}") = "Dreamwalker", "Assembly-UnityScript-firstpass.unityproj", "{F9F29CB9-54F1-BB41-FCD7-9AB3AF6BE155}"
 EndProject
+Project("{B84F82DE-0161-3DAA-7B68-0CC205253A46}") = "Dreamwalker", "Assembly-UnityScript.unityproj", "{6882D265-895E-AB16-D3E0-6E803F179C61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,11 +33,15 @@ Global
 		{F9F29CB9-54F1-BB41-FCD7-9AB3AF6BE155}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F29CB9-54F1-BB41-FCD7-9AB3AF6BE155}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F29CB9-54F1-BB41-FCD7-9AB3AF6BE155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6882D265-895E-AB16-D3E0-6E803F179C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6882D265-895E-AB16-D3E0-6E803F179C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6882D265-895E-AB16-D3E0-6E803F179C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6882D265-895E-AB16-D3E0-6E803F179C61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																						GlobalSection(MonoDevelopProperties) = preSolution
+																																																																									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
