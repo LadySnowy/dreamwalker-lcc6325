@@ -5,6 +5,7 @@ var Laugh:AudioSource;
 var LaughPlayed = false;
 
 var Newspaper:Texture2D;
+var Reunited:Texture2D;
 
 var Alpha : float;
 
@@ -21,7 +22,7 @@ function Update ()
 
 	var cur = DateTime.Now;
 	
-	var openingTS = new TimeSpan(0, 0, 0, 3, 0);
+	var openingTS = new TimeSpan(0, 0, 0, 7, 0);
 	var laughStart = this.last + openingTS;
 	
 	var laughTS = new TimeSpan(0, 0, 0, 6, 0);
@@ -53,17 +54,23 @@ function OnGUI() {
 
 	var cur = DateTime.Now;
 	
-	var fadeInTS = new TimeSpan(0, 0, 0, 3, 0);
+	var fadeInTS = new TimeSpan(0, 0, 0, 1, 0);
 	var fadeInNewspaperStart = this.last + fadeInTS;
 
-	var newspaperTS = new TimeSpan(0, 0, 0, 2, 0);
+	var newspaperTS = new TimeSpan(0, 0, 0, 4, 0);
 	var newspaperStart = fadeInNewspaperStart + newspaperTS;
 
-	var fadeOutTS = new TimeSpan(0, 0, 0, 5, 0);
+	var fadeOutTS = new TimeSpan(0, 0, 0, 1, 0);
 	var fadeOutNewspaperStart = newspaperStart + fadeOutTS;
 
-	var loadTS = new TimeSpan(0, 0, 0, 2, 0);
-	var loadStart = fadeOutNewspaperStart + loadTS;
+	var fadeInReunitedTS = new TimeSpan(0, 0, 0, 1, 0);
+	var fadeInReunitedStart = fadeOutNewspaperStart + fadeInReunitedTS;
+
+	var fadeOutReunitedTS = new TimeSpan(0, 0, 0, 6, 0);
+	var fadeOutReunitedStart = fadeInReunitedStart + fadeOutReunitedTS;
+
+	var loadTS = new TimeSpan(0, 0, 0, 1, 0);
+	var loadStart = fadeOutReunitedStart + loadTS;
 	
 	if (cur > fadeInNewspaperStart && cur < newspaperStart) {
 		FadeIn();
@@ -74,12 +81,22 @@ function OnGUI() {
 		PlaceImage(Newspaper);
 	}
 
-	if (cur > fadeOutNewspaperStart && cur < loadStart) {
+	if (cur > fadeOutNewspaperStart && cur < fadeInReunitedStart) {
 		FadeOut();
 		PlaceImage(Newspaper);
 	}
 
-		if (cur > loadStart) {
+	if (cur > fadeInReunitedStart && cur < fadeOutReunitedStart) {
+		FadeIn();
+		PlaceImage(Reunited);
+	}
+	
+	if (cur > fadeOutReunitedStart && cur < loadStart) {
+		FadeOut();
+		PlaceImage(Reunited);	
+	}
+	
+	if (cur > loadStart) {
 		Application.LoadLevel("Menu");
 	}
 	
