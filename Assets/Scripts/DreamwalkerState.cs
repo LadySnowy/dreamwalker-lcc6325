@@ -5,6 +5,7 @@ public class DreamwalkerState : MonoBehaviour
 {
 		
 	public Texture2D[] clues;
+	public Texture2D clueBackground;
 	bool[] clueVisible;
 	int numCreeperHits;
 	bool allCluesGrabbed;
@@ -120,6 +121,8 @@ public class DreamwalkerState : MonoBehaviour
 		//this.clueLines [0] [0] = new Vector2 (startX, startY);
 		//this.clueLines [0] [1] = new Vector2 (startX - 50, startY - 100);
 		Rect r = new Rect (startX, startY, 200, 200);
+		
+		GUI.Label (r, this.clueBackground);
 		
 		for (int i = 0; i < this.clueVisible.Length; i++) {
 			if (this.clueVisible [i]) {
