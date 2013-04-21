@@ -213,8 +213,10 @@ public class CreeperMovement : MonoBehaviour
 				//calculate new path
 				if (needNewPath) {
 					//Debug.Log ("start path: " + this.gameObject.transform.position + ", " + destination);
-					seeker.StartPath (this.gameObject.transform.position, destination, OnPathComplete);
-					this.needNewPath = false;
+					if (seeker.IsDone ()) {
+						seeker.StartPath (this.gameObject.transform.position, destination, OnPathComplete);
+						this.needNewPath = false;
+					}
 				}
 				//We have no path to move after yet
 				return;

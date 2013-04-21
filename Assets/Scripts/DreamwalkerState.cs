@@ -14,13 +14,10 @@ public class DreamwalkerState : MonoBehaviour
 	public GameObject player;
 	bool chasePhase;
 	public float ALLOWED_EXIT_DIST;
-	
 	string clueCollectHint;
 	string findChildHint;
 	string exitPortalHint;
-	
 	bool showHint;
-	
 	public PlayerScript playerScript;
 	
 	// Use this for initialization
@@ -48,12 +45,12 @@ public class DreamwalkerState : MonoBehaviour
 	{
 		if (this.playerScript.Health <= this.playerScript.MinHealth) {
 			//End Game
-			Application.LoadLevel("LosePauseScene");
+			Application.LoadLevel ("LosePauseScene");
 		}
 		if (this.chasePhase) {
 			float exitDistance = Vector3.Distance (this.exit.transform.position, this.player.transform.position);
 			if (exitDistance < ALLOWED_EXIT_DIST) {
-				Application.LoadLevel("PauseScene");
+				Application.LoadLevel ("PauseScene");
 			}
 		}
 		
@@ -70,7 +67,7 @@ public class DreamwalkerState : MonoBehaviour
 		this.clueVisible [clueNumber] = true;
 		bool cluesComplete = true;
 		for (int i = 0; i < this.clueVisible.Length; i++) {
-			if (!this.clueVisible[i]) {
+			if (!this.clueVisible [i]) {
 				cluesComplete = false;
 			}
 		}
@@ -80,7 +77,8 @@ public class DreamwalkerState : MonoBehaviour
 		}
 	}
 		
-	public bool ShouldCreeperHitCount(bool goal) {
+	public bool ShouldCreeperHitCount (bool goal)
+	{
 		//bool lastCreeper = this.allCluesGrabbed && goal;
 		//if (lastCreeper) return false;
 		return (!this.chasePhase || !goal);
@@ -94,29 +92,32 @@ public class DreamwalkerState : MonoBehaviour
 		//}
 		//Debug.Log ("DreamwalkerState creeper hit count: " + this.numCreeperHits);
 		
-		if (this.allCluesGrabbed && goal) {
-			//chase phase!
-			this.playerScript.retrievalEvent();
-			//fog off
-			RenderSettings.fog = false;
-			//all creepers enter chase phase!
-			for (int i = 0; i < this.allCreepers.Length; i++) {
-				this.allCreepers[i].enterChasePhase();
-			}
+		if (! this.chasePhase) {
+			if (this.allCluesGrabbed && goal) {
+				//chase phase!
+				this.playerScript.retrievalEvent ();
+				//fog off
+				RenderSettings.fog = false;
+				//all creepers enter chase phase!
+				for (int i = 0; i < this.allCreepers.Length; i++) {
+					this.allCreepers [i].enterChasePhase ();
+				}
 			
-			this.chasePhase = true;
-			this.exit.renderer.enabled = true;
+				this.chasePhase = true;
+				this.exit.renderer.enabled = true;
+			}
 		}
 	}
 	
-	public void DrainPlayerHealth() {
+	public void DrainPlayerHealth ()
+	{
 		this.playerScript.Health -= this.playerScript.CreeperDrainTick;
 	}
 	
 	void OnGUI ()
 	{
-		int startX = Screen.width - 200;
-		int startY = Screen.height - 200;
+		int startX = Screen.width - 250;
+		int startY = Screen.height - 220;
 		
 		//this.clueLines [0] [0] = new Vector2 (startX, startY);
 		//this.clueLines [0] [1] = new Vector2 (startX - 50, startY - 100);
@@ -140,15 +141,15 @@ public class DreamwalkerState : MonoBehaviour
 		if (this.showHint) {
 			GUIContent content = null;
 			if (!this.allCluesGrabbed) {
-				content = new GUIContent(this.clueCollectHint);
+				content = new GUIContent (this.clueCollectHint);
 			} else if (this.allCluesGrabbed && !this.chasePhase) {
-				content = new GUIContent(this.findChildHint);
+				content = new GUIContent (this.findChildHint);
 			} else {
-				content = new GUIContent(this.exitPortalHint);
+				content = new GUIContent (this.exitPortalHint);
 			}
 			
-			Rect hintRect = GUILayoutUtility.GetRect(content, style);
-			Rect placedRect = new Rect(hintX, hintY, hintRect.width, hintRect.height);
+			Rect hintRect = GUILayoutUtility.GetRect (content, style);
+			Rect placedRect = new Rect (hintX, hintY, hintRect.width, hintRect.height);
 			GUI.Label (placedRect, content);
 		}
 	}
