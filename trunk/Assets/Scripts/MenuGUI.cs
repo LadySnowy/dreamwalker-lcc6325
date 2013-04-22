@@ -8,7 +8,8 @@ public class MenuGUI : MonoBehaviour
 	public Texture mouse;
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		Screen.showCursor = true;
 	}
 	
@@ -51,9 +52,15 @@ public class MenuGUI : MonoBehaviour
 		GUI.Label (new Rect (width / 2 - 175, 460, 400, 100), "To interact with something, walk into it.");
 		
 		// START GAME
-		if (GUI.Button (new Rect (width / 2 - 75, height - 100, 150, 50), "Start Game")) {
+		if (GUI.Button (new Rect (width / 2 - 75, height - 160, 150, 50), "Start Game")) {
 			Application.LoadLevel ("world");
 			//PlayerScript.Health = 0;
+		}
+		
+		if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.WindowsPlayer) {
+			if (GUI.Button (new Rect (width / 2 - 75, height - 100, 150, 50), "Quit Game")) {
+				Application.Quit ();
+			}
 		}
 	}
 }
