@@ -111,7 +111,7 @@ public class CreeperMovement : MonoBehaviour
 		this.chasePhase = true;
 		this.PLAYER_PROXIMITY = 5000; //change based on level dimensions!
 		audioChasePauseTimeSeconds = 0;
-		this.chaseMaxVelocity = 12;
+		this.chaseMaxVelocity = 10.5;
 	}
 	
 	// Update is called once per frame
